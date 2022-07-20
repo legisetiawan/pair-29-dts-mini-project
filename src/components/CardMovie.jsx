@@ -1,19 +1,43 @@
 import React from 'react'
 import { Box, Card, Rating, CardMedia, CardContent, Typography } from "@mui/material";
 
-function CardMovie({propsMovie}) {
+const CardMovie = (props) => {
     const baseUrlForMovie = "https://image.tmdb.org/t/p/w200";
   return (
-    <Card>
-    <Box className="boxy">
-      <Typography variant="h5"> Component Cardmovie</Typography>
+    <Card className="boxy">
+    <Box>
+      <Typography variant="h6">Component CardMovie</Typography>
     </Box>
-    <Box className="Boxy" sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-      <CardMedia component="img" image={`${baseUrlForMovie}${propsMovie.poster_path}`} alt="kucing" sx={{ width: 150 }}></CardMedia>
-      <CardContent>
-        <Typography variant="body1">{propsMovie.title}</Typography>
-        <Rating value={propsMovie.vote_average / 2} precision={0.1} readOnly />
-        <Typography variant="body1">{propsMovie.overview}</Typography>
+    <Box
+      className="boxy"
+      sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+    >
+      <CardMedia
+        component="img"
+        sx={{ width: 1 }}
+        image={`${baseUrlForMovie}${props.movie.poster_path}`}
+        alt={props.movie.title}
+      ></CardMedia>
+      <CardContent
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          width: 1,
+        }}
+      >
+        <Typography component="div" variant="body1">
+          {props.movie.title}
+        </Typography>
+        <Rating
+          value={props.movie.vote_average / 2}
+          precision={0.1}
+          readOnly
+        />
+        <Typography variant="body2">
+          Release date: {props.movie.release_date}
+        </Typography>
+        <Typography variant="body2">{props.movie.overview}</Typography>
       </CardContent>
     </Box>
   </Card>

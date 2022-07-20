@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Box, Rating } from "@mui/material";
-import Card from "@mui/material/Card";
+import React, { useState,  useEffect } from "react";
+import Box from "@mui/material/Box";
 import tmdb from "../api/tmdb";
 import CardMovie from "../components/CardMovie";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 const DetailFilm = () => {
@@ -12,14 +9,10 @@ const DetailFilm = () => {
   useEffect(() => {
     const fetchDataMovies = async () => {
       try {
-        // Gunakan instance tmdb di sini
+        
         const responseDariTMDB = await tmdb.get(
-          // Nah di sini kita tidak perlu menuliskan terlalu panjang lagi
           "/movie/popular"
         );
-
-        // Jangan lupa set statenya
-        // Perhatikan di sini responseDariTMDB ada .data (response schema axios)
         setMovies(responseDariTMDB.data.results);
       } catch (err) {
         console.log(err);
@@ -31,8 +24,8 @@ const DetailFilm = () => {
 
   return (
     <>
-      <Box>
-        <Typography variant="h5">List Movies Populer TMDB</Typography>
+      <Box sx={{padding:"1em",margin:"1em 0em",border:"1px dashed grey"}}>
+        <Typography variant="h5" align="center" sx={{mt:5,mb:5}}>List Movies Populer TMDB</Typography>
 
         {movies.map((movie) => {
           return <CardMovie movie={movie} />;
