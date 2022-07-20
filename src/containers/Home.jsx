@@ -70,6 +70,7 @@ const Home = () => {
         <Toolbar />
       </Box>
     </Box>
+    
     </>
   );
 }
