@@ -1,4 +1,5 @@
 import React from 'react'
+import '../index.css'
 import { Box, Card, Rating, CardMedia, CardContent, Typography } from "@mui/material";
 
 const CardMovie = (props) => {
@@ -14,7 +15,7 @@ const CardMovie = (props) => {
     >
       <CardMedia
         component="img"
-        sx={{ width: 1 }}
+        sx={{ width: 0.3 }}
         image={`${baseUrlForMovie}${props.movie.poster_path}`}
         alt={props.movie.title}
       ></CardMedia>
