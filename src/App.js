@@ -1,12 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './containers/Home';
 import Login from './containers/Login';
 
 function App() {
   return (
     <>
-      <Login/>
-  
+    <Login/>
+    <Home/>  
     </>
   );
 }
