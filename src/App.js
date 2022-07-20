@@ -1,4 +1,5 @@
 import './App.css';
+import DetailFilm from './containers/DetailFilm';
 import Home from './containers/Home';
 import Login from './containers/Login';
 
@@ -7,6 +8,7 @@ function App() {
     <>
     <Login/>
     <Home/>
+    <DetailFilm/>
     </>
   );
 }
