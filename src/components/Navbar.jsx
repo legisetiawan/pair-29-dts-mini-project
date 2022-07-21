@@ -1,17 +1,18 @@
 import React from 'react'
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography,IconButton } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu'
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 import { useNavigate } from "react-router-dom";
 
 // Import fungsi untuk melakukan Logout
 import { keluarDariApps } from "../authentication/firebase";
-
+const navItems = ['POPULAR', 'TRENDING', 'ACTION'];
 const Navbar = () => {
   const navigate = useNavigate();
 
-  // Fungsi ini akan menjadi async await
-  // Karena keluarDariApps bersifat async, dan kita harus menunggu
-  // keluarDariAppsSelesai, baru boleh navigate
+  const menuId = 'primary-search-account-menu';
+
   const buttonLogoutOnClickHandler = async () => {
     // Kita akan memanggil fungsi keluarDariApps di sini
     await keluarDariApps();
@@ -19,17 +20,47 @@ const Navbar = () => {
   };
 
   return (
-    <Box>
-      <AppBar position="static">
+    <Box sx={{ display: 'flex' }}>
+      <AppBar component="nav">
         <Toolbar>
-          <Typography variant="h6" component="div">
-            Belajar Firebase Authentication
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            MOVIES
           </Typography>
-          <Button color="inherit" onClick={buttonLogoutOnClickHandler}>
-            Logout
-          </Button>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            {navItems.map((item) => (
+              <Button key={item} sx={{ color: '#fff' }}>
+                {item}
+              </Button>
+            ))}
+             <IconButton
+              size="large"
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              color="inherit"
+              onClick={buttonLogoutOnClickHandler}
+            >
+              <AccountCircle />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
+      <Box component="main" sx={{ p: 3 }}>
+        <Toolbar />
+      </Box>
     </Box>
   );
 };

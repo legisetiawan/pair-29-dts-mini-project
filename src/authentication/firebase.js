@@ -13,8 +13,6 @@ const firebaseConfig = {
   messagingSenderId: "109554279492",
   appId: "1:109554279492:web:7c652662b26ef67e380811",
 };
-
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
@@ -27,28 +25,16 @@ const registerDenganEmailDanPassword = async (email, password) => {
       password
     );
 
-    // Pada aturan firebase authentication
-    // Setelah user selesai registrasi, maka secara otomatis akan melakukan Sign In
-    // sehingga kita bisa mengecek apakah seseorang sudah berhasil masuk atau belum
-
     console.log(
       "User yang teregistrasi dan berhasil login adalah",
       response.user
     );
   } catch (err) {
     console.log(err);
-
-    // Sebenarnya di dalam err dari Firebase ini (dalam bentuk Object)
-    // ada 2 property yang penting:
-    // - code: error code dari firebase authentication ketika terjadi error
-    // - message: error message dari firebase authentication ketika terjadi error
     console.log("error code auth", err.code);
     console.log("error message auth", err.message);
   }
 };
-
-// Fungsi untuk Login
-// Kita gunakan versi async / await untuk memudahkan yah
 const loginDenganEmailDanPassword = async (email, password) => {
   // Dokumentasi: https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
   try {
@@ -61,8 +47,6 @@ const loginDenganEmailDanPassword = async (email, password) => {
     console.log("User yang berhasil login adalah", userCredential.user);
   } catch (err) {
     console.log(err);
-
-    // Sama dengan register
     console.log("error code auth", err.code);
     console.log("error message auth", err.message);
   }
@@ -90,9 +74,9 @@ const keluarDariApps = async () => {
   }
 };
 
-// Export seluruh fungsi yang dibuat + auth
+
 export {
-  auth, // Nanti akan digunakan untuk hooks react-hooks-firebase
+  auth,
   registerDenganEmailDanPassword,
   loginDenganEmailDanPassword,
   resetPassword,
