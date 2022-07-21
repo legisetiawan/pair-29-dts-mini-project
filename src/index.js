@@ -7,8 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./containers/Login";
 import Register from "./containers/Register";
-
-// Kita akan import ProtectedComponent untuk digunakan di sini
 import ProtectedComponent from "./components/ProtectedComponent";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,7 +14,6 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        {/* Kita akan gunakan di sini dan nge-slot App */}
         <Route
           path="/"
           element={
