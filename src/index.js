@@ -25,7 +25,7 @@ root.render(
             </ProtectedComponent>
           }
         />
-        <Route path="login" element={<Login />} />
+        <Route path="login" element={<Login/>} />
         <Route path="register" element={<Register />} />
       </Routes>
     </BrowserRouter>

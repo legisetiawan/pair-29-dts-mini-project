@@ -1,9 +1,16 @@
-import React,{useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
-import {useAuthState} from "react-firebase-hooks/auth";
-import {auth} from '../authentication/firebase';
+import React, { useEffect } from "react";
 
-function ProtectedComponent({children}) {
+// Di sini kita akan akan menggunakan hooks:
+// - untuk mendeteksi user sudah login (useAuthState)
+// - untuk memaksa navigasi bila user belum login dengan (useNavigate)
+import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+// Untuk bisa menggunakan useAuthState, kita membutuhkan auth dari authentication/firebase
+import { auth } from "../authentication/firebase";
+
+// Karena di sini akan nge-slot, maka harus menerima props children
+const ProtectedComponent = ({ children }) => {
   // Kita gunakan hooksnya di sini
   const navigate = useNavigate();
 
@@ -32,4 +39,4 @@ function ProtectedComponent({children}) {
   // return isLoading ? "" : children;
 };
 
-export default ProtectedComponent
+export default ProtectedComponent;
