@@ -6,9 +6,6 @@ const CardMovie = (props) => {
     const baseUrlForMovie = "https://image.tmdb.org/t/p/w200";
   return (
     <Card className="boxy">
-    <Box>
-      <Typography variant="h6">Component CardMovie</Typography>
-    </Box>
     <Box
       className="boxy"
       sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}

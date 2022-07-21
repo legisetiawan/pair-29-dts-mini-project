@@ -69,7 +69,7 @@ const LoginOrRegisterForm = ({ loginOrRegister }) => {
 
         <TextField name="Email" type="email" variant="outlined" margin="normal" required fullWidth label="Email Address" value={credential.email} onChange={textFieldEmailOnChangeHandler} autoComplete="email" />
 
-        <TextField name="Password" type="Password" variant="outlined" margin="normal" required fullWidth label="Password" value={credential.password} onChange={textFieldPasswordOnChangeHandler} autoComplete="current-password" />
+        <TextField name="Password" type="password" variant="outlined" margin="normal" required fullWidth label="Password" value={credential.password} onChange={textFieldPasswordOnChangeHandler} autoComplete="current-password" />
 
         <Button variant="contained" fullWidth sx={{ mt: 3, mb: 2 }} onClick={buttonLoginOrRegisterOnClickHandler}>
           {loginOrRegister === "login" ? "Login" : "Register Account"}
