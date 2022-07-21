@@ -1,14 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import { Routes,Route } from 'react-router-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./containers/Login";
+import Register from "./containers/Register";
+
+// Kita akan import ProtectedComponent untuk digunakan di sini
+import ProtectedComponent from "./components/ProtectedComponent";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        {/* Kita akan gunakan di sini dan nge-slot App */}
+        <Route
+          path="/"
+          element={
+            <ProtectedComponent>
+              <App />
+            </ProtectedComponent>
+          }
+        />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

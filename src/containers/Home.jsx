@@ -1,78 +1,29 @@
 import React from 'react'
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import {Typography,Box} from '@mui/material';
+// Karena kita ingin menampilkan user, kita di sini cukup menggunakan useAuthState dan auth saja !
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../authentication/firebase";
 
-const navItems = ['Popular', 'Action', 'Adventure'];
-const drawer = (
-  <Box sx={{ textAlign: 'center' }}>
-    <Typography variant="h6" sx={{ my: 2 }}>
-      MUI
-    </Typography>
-    <Divider />
-    <List>
-      {navItems.map((item) => (
-        <ListItem key={item} disablePadding>
-          <ListItemButton sx={{ textAlign: 'center' }}>
-            <ListItemText primary={item} />
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
-  </Box>
-);
 const Home = () => { 
-        
+  // Di sini kita hanya perlu menggunakan user saja
+  const [user] = useAuthState(auth);
 
   return (
     <>
-    <Box sx={{ display: 'flex' }}>
-      <AppBar component="nav">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Movies
+      <Box>
+        <Typography variant="body1">Halo, ini adalah halaman utama</Typography>
+
+        {/* Kita akan tampilkan email dari user di sini */}
+        {user ? (
+          <Typography variant="body1">
+            Email - <strong>{user.email}</strong>, uid -{" "}
+            <strong>{user.uid}</strong>
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <Box component="nav">
-        
+        ) : (
+          ""
+        )}
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-      </Box>
-    </Box>
-    
     </>
   );
-}
-
+};
 export default Home
